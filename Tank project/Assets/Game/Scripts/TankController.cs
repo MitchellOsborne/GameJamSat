@@ -9,6 +9,8 @@ public class TankController: MonoBehaviour {
     private Turret currentCannon;
     [SerializeField]
     float speed = 0;
+
+    Health hp;
     Vector3 aimDir;
     Vector3 moveVel;
 
@@ -16,6 +18,7 @@ public class TankController: MonoBehaviour {
     
     // Use this for initialization
     void Start () {
+        hp = GetComponent<Health>();
         aimDir = Vector2.zero;
         moveVel = Vector2.zero;
         cC = GetComponent<CharacterController>();
@@ -62,16 +65,23 @@ public class TankController: MonoBehaviour {
 
     void FixedUpdate()
     {
-        tankCannon.transform.LookAt(transform.position + aimDir);
+        currentCannon.transform.LookAt(transform.position + aimDir);
         tankBody.transform.LookAt(transform.position + (moveVel));
         cC.SimpleMove(moveVel.normalized*speed);
     }
 
     public void PickUp(GameObject Turret)
     {
-        Instantiate(Turret, transform.position, transform.rotation, transform);
-        currentCannon = Turret.GetComponent<Turret>();
-        tankCannon.SetActive(false);
+        if (currentCannon.gameObject != tankCannon)
+        {
+            Destroy(currentCannon);
+        }
+        else
+        {
+            tankCannon.SetActive(false);
+        }
+        GameObject obj = (GameObject)Instantiate(Turret, transform.position, transform.rotation, transform);
+        currentCannon = obj.GetComponent<Turret>();
     }
 
     public void RemoveCannon()
@@ -82,9 +92,6 @@ public class TankController: MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-        if(canFire)
-        {
-           
-        }
+        
 	}
 }

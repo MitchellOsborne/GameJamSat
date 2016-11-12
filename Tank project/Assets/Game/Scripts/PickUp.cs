@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
 
 public class PickUp : MonoBehaviour {
 
 	[SerializeField]
-	private GameObject turret;
+	private List<GameObject> turrets;
 
 	[SerializeField]
 	private GameObject effect;
@@ -17,9 +17,9 @@ public class PickUp : MonoBehaviour {
 
         if (tc != null)
         {
-            tc.PickUp(turret);
+            tc.PickUp(turrets[Random.Range(0, turrets.Count)]);
         }
 
-		Destroy(this);
+		Destroy(gameObject);
 	}
 }
