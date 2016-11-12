@@ -53,7 +53,7 @@ public class TankController: MonoBehaviour {
 
     void FixedUpdate()
     {
-        tankCannon.transform.LookAt(transform.position + (-aimDir));
+        tankCannon.transform.LookAt(transform.position + aimDir);
         tankBody.transform.LookAt(transform.position + (moveVel));
         cC.SimpleMove(moveVel.normalized*speed);
     }
