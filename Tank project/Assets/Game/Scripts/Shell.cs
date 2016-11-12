@@ -22,6 +22,8 @@ public class Shell : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider other) {
+        if (other.tag == tag)
+            return;
 		if(explosion != null)
 			Instantiate (explosion, transform.position, Quaternion.identity);
 

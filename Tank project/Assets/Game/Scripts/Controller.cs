@@ -40,7 +40,7 @@ public class Controller : MonoBehaviour {
         tC.OnAxis("MoveVertical", player.GetAxis("MoveVertical"));
         tC.OnAxis("AimHorizontal", player.GetAxis("AimHorizontal"));
         tC.OnAxis("AimVertical", player.GetAxis("AimVertical"));
-        tC.OnAction("Shoot", player.GetButtonDown("Shoot"));
+        tC.OnAction("Shoot", player.GetButton("Shoot"));
         tC.OnAction("Boost", player.GetButtonDown("Boost"));
 	}
 

@@ -11,7 +11,7 @@ public class PickUp : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other) {
         Debug.Log("Collided with stuff");
-		Instantiate (effect, transform.position, Quaternion.identity);
+		//Instantiate (effect, transform.position, Quaternion.identity);
 
 		TankController tc = other.gameObject.GetComponent<TankController>();
 

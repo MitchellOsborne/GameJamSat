@@ -6,15 +6,20 @@ public class TankController: MonoBehaviour {
     [SerializeField]
     private GameObject tankCannon, tankBody;
     [SerializeField]
+    private Turret currentCannon;
+    [SerializeField]
     float speed = 0;
     Vector3 aimDir;
     Vector3 moveVel;
+
+    bool canFire = false;
     
     // Use this for initialization
     void Start () {
         aimDir = Vector2.zero;
         moveVel = Vector2.zero;
         cC = GetComponent<CharacterController>();
+        currentCannon = tankCannon.GetComponent<Turret>();
 	}
 	
     public void OnAxis(string axis, float value)
@@ -40,14 +45,18 @@ public class TankController: MonoBehaviour {
 
     public void OnAction(string action, bool value)
     {
-        switch (action)
+        if (value)
         {
-            case "Shoot":
-                break;
-            case "Boost":
-                break;
-            default:
-                break;
+            switch (action)
+            {
+                case "Shoot":
+                    currentCannon.Fire();
+                    break;
+                case "Boost":
+                    break;
+                default:
+                    break;
+            }
         }
     }
 
@@ -60,10 +69,22 @@ public class TankController: MonoBehaviour {
 
     public void PickUp(GameObject Turret)
     {
-        //Add Turret to Cannon
+        Instantiate(Turret, transform.position, transform.rotation, transform);
+        currentCannon = Turret.GetComponent<Turret>();
+        tankCannon.SetActive(false);
+    }
+
+    public void RemoveCannon()
+    {
+        currentCannon = tankCannon.GetComponent<Turret>();
+        tankCannon.SetActive(true);
     }
 
 	// Update is called once per frame
 	void Update () {
+        if(canFire)
+        {
+           
+        }
 	}
 }

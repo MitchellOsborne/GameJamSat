@@ -4,35 +4,41 @@ using System.Collections;
 public class Turret : MonoBehaviour {
     [SerializeField]
     float rateOfFire;
-    float fireTime;
-    [SerializeField]
-    int ammoCount;
+    float fireTime = 0;
+    //[SerializeField]
+    //int ammoCount;
     [SerializeField]
     GameObject projectile;
 
+    //TankController tC;
+
 	// Use this for initialization
 	void Start () {
-	
+    //   tC = GetComponentInParent<TankController>();
 	}
 
     public void Fire()
     {
+    //    Debug.Log(fireTime);
         if(fireTime >= rateOfFire)
         {
+      //      Debug.Log("I Am Firing");
             fireTime = 0;
-            Instantiate(projectile, transform.position, transform.rotation);
-            --ammoCount;
+            GameObject obj = (GameObject)Instantiate(projectile, transform.position, transform.rotation);
+            obj.tag = transform.parent.tag;
+            //--ammoCount;
         }
     }
 
 	
 	// Update is called once per frame
 	void Update () {
-        if(ammoCount == 0)
-        {
+        //if(ammoCount == 0)
+        //{
             //Reset Cannon to default cannon
-            Destroy(this);
-        }
+        //    Destroy(gameObject);
+        //}
         fireTime += Time.deltaTime;
+        fireTime = Mathf.Min(fireTime, rateOfFire);
 	}
 }
