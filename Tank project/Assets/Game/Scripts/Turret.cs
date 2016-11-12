@@ -31,6 +31,7 @@ public class Turret : MonoBehaviour {
         {
       //      Debug.Log("I Am Firing");
             fireTime = 0;
+<<<<<<< HEAD
             for (int x = 0; x < numberOfProjectiles; ++x)
             {
                 Vector3 rot = transform.rotation.eulerAngles;
@@ -39,6 +40,12 @@ public class Turret : MonoBehaviour {
                 obj.tag = transform.parent.tag;
             }
             --ammoCount;
+=======
+            GameObject obj = (GameObject)Instantiate(projectile, transform.position, transform.rotation);
+            obj.tag = transform.parent.tag;
+			//
+            //--ammoCount;
+>>>>>>> 26561bf92fea8ba136a4b99a135ef0ca1b03c39a
         }
     }
 
