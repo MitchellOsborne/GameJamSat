@@ -14,6 +14,8 @@ public class Controller : MonoBehaviour {
 	[SerializeField]
 	private bool shoot, boost;
 
+    TankMovement tM;
+
 	private Player player;
 
 	[System.NonSerialized]
@@ -23,6 +25,11 @@ public class Controller : MonoBehaviour {
 		player = ReInput.players.GetPlayer(playerId);
 		initialized = true;
 	}
+
+    void Start()
+    {
+        tM = GetComponent<TankMovement>();
+    }
 
 	// Update is called once per frame
 	void Update () {
@@ -35,9 +42,11 @@ public class Controller : MonoBehaviour {
 	}
 
 	private void ProcessInput(){
-		//OnAxis("MoveHorizontal", player.GetAxis("MoveHorizontal"));
-		//OnAxis("MoveVertical", player.GetAxis("MoveVertical"));
-		//OnAction("Shoot", player.GetButtonDown("Shoot"));
-		//OnAction("Boost", player.GetButtonDown("Boost"));
+		tM.OnAxis("MoveHorizontal", player.GetAxis("MoveHorizontal"));
+        tM.OnAxis("MoveVertical", player.GetAxis("MoveVertical"));
+        tM.OnAxis("AimHorizontal", player.GetAxis("AimHorizontal"));
+        tM.OnAxis("AimVertical", player.GetAxis("AimVertical"));
+        tM.OnAction("Shoot", player.GetButtonDown("Shoot"));
+        tM.OnAction("Boost", player.GetButtonDown("Boost"));
 	}
 }
