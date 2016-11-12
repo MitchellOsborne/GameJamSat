@@ -4,7 +4,7 @@ using System.Collections;
 public class TankController: MonoBehaviour {
     CharacterController cC;
     [SerializeField]
-    GameObject tankCannon, tankBody;
+    private GameObject tankCannon, tankBody;
     [SerializeField]
     float speed = 0;
     Vector3 aimDir;
