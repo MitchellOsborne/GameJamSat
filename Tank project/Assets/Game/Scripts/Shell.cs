@@ -25,13 +25,12 @@ public class Shell : MonoBehaviour {
 
 		Health health = other.gameObject.GetComponent<Health> ();
 
-		if (health == null)
-			return;
-		
-		health.Modify (-damage);
+		if (health != null) {
+			health.Modify (-damage);
 
-		CameraShake.ShakeAll();
+			CameraShake.ShakeAll ();
+		}
 
-		Destroy(this);
+		Destroy (this);
 	}
 }
