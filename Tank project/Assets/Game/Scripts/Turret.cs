@@ -26,6 +26,7 @@ public class Turret : MonoBehaviour {
             fireTime = 0;
             GameObject obj = (GameObject)Instantiate(projectile, transform.position, transform.rotation);
             obj.tag = transform.parent.tag;
+			//
             //--ammoCount;
         }
     }
