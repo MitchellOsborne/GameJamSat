@@ -14,6 +14,13 @@ public class Turret : MonoBehaviour {
     [SerializeField]
     GameObject projectile;
 
+    [SerializeField]
+    float muzzleDuration = 0;
+    float timer = 0;
+
+    [SerializeField]
+    private GameObject muzzleFlash;
+
     TankController tC;
 
     [SerializeField]
@@ -26,12 +33,14 @@ public class Turret : MonoBehaviour {
 
     public void Fire()
     {
+        
     //    Debug.Log(fireTime);
         if(fireTime >= rateOfFire)
         {
-      //      Debug.Log("I Am Firing");
+            muzzleFlash.SetActive(true);
+            timer = 0;
+            //      Debug.Log("I Am Firing");
             fireTime = 0;
-<<<<<<< HEAD
             for (int x = 0; x < numberOfProjectiles; ++x)
             {
                 Vector3 rot = transform.rotation.eulerAngles;
@@ -40,12 +49,6 @@ public class Turret : MonoBehaviour {
                 obj.tag = transform.parent.tag;
             }
             --ammoCount;
-=======
-            GameObject obj = (GameObject)Instantiate(projectile, transform.position, transform.rotation);
-            obj.tag = transform.parent.tag;
-			//
-            //--ammoCount;
->>>>>>> 26561bf92fea8ba136a4b99a135ef0ca1b03c39a
         }
     }
 
@@ -59,5 +62,12 @@ public class Turret : MonoBehaviour {
         }
         fireTime += Time.deltaTime;
         fireTime = Mathf.Min(fireTime, rateOfFire);
+
+        timer += Time.deltaTime;
+        if(timer > muzzleDuration)
+        {
+            muzzleFlash.SetActive(false);
+            timer = 0;
+        }
 	}
 }

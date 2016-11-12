@@ -19,6 +19,7 @@ public class PickUp : MonoBehaviour {
             tc.PickUp(turrets[Random.Range(0, turrets.Count)]);
         }
 
-		Destroy(gameObject);
+        transform.position = new Vector3(Random.Range(-10, 10), 1, Random.Range(-9, 9));
+		//Destroy(gameObject);
 	}
 }

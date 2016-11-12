@@ -9,6 +9,8 @@ public class TankController: MonoBehaviour {
     private Turret currentCannon;
     [SerializeField]
     float speed = 0;
+    [SerializeField]
+    GameObject thruster;
 
     Health hp;
     Vector3 aimDir;
@@ -67,6 +69,13 @@ public class TankController: MonoBehaviour {
     {
         currentCannon.transform.LookAt(transform.position + aimDir);
         tankBody.transform.LookAt(transform.position + (moveVel));
+        if(moveVel.magnitude != 0)
+        {
+            thruster.SetActive(true);
+        }else
+        {
+            thruster.SetActive(false);
+        }
         cC.SimpleMove(moveVel.normalized*speed);
     }
 
