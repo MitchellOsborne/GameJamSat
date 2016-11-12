@@ -29,6 +29,7 @@ public class Shell : MonoBehaviour {
 			health.Modify (-damage);
 
 			CameraShake.ShakeAll ();
+			Controller.Vibrate ();
 		}
 
 		Destroy (this);
