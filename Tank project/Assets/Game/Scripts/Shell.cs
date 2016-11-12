@@ -17,6 +17,7 @@ public class Shell : MonoBehaviour {
 
 	// Use this for initialization
 	void Awake() {
+        body = GetComponent<Rigidbody>();
 		body.velocity = transform.forward * speed;	
 	}
 

@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
 using Rewired;
 
 [AddComponentMenu("")]
@@ -46,7 +46,7 @@ public class Controller : MonoBehaviour {
 
 	public static void Vibrate(float lAmount = 1, float rAmount = 1, float lDuration = 0.5f, float rDuration = 0.5f){
 		// Set vibration for a certain duration
-		Player players = ReInput.players;
+		IList<Player> players = ReInput.players.GetPlayers();
 
 		foreach (Player p in players) {
 			foreach (Joystick j in p.controllers.Joysticks) {
