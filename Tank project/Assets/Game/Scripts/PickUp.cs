@@ -12,9 +12,12 @@ public class PickUp : MonoBehaviour {
 	void OnTriggerEnter(Collider other) {
 		Instantiate (effect, transform.position, Quaternion.identity);
 
-		//TankController tc = other.gameObject.GetComponent<TankController>();
+		TankController tc = other.gameObject.GetComponent<TankController>();
 
-		//tc.PickUp(turret);
+        if (tc != null)
+        {
+            tc.PickUp(turret);
+        }
 
 		Destroy(this);
 	}

@@ -58,6 +58,11 @@ public class TankController: MonoBehaviour {
         cC.SimpleMove(moveVel.normalized*speed);
     }
 
+    public void PickUp(GameObject Turret)
+    {
+        //Add Turret to Cannon
+    }
+
 	// Update is called once per frame
 	void Update () {
 	}
