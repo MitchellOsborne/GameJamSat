@@ -22,17 +22,17 @@ public class Shell : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider other) {
-		Instantiate (explosion, transform.position, Quaternion.identity);
+		if(explosion != null)
+			Instantiate (explosion, transform.position, Quaternion.identity);
 
 		Health health = other.gameObject.GetComponent<Health> ();
 
 		if (health != null) {
 			health.Modify (-damage);
-
-			CameraShake.ShakeAll ();
-			Controller.Vibrate ();
 		}
 
-		Destroy (this);
+		CameraShake.ShakeAll ();
+		Controller.Vibrate ();
+		Destroy (gameObject);
 	}
 }
