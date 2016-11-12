@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class TankMovement : MonoBehaviour {
+public class TankController: MonoBehaviour {
     CharacterController cC;
     [SerializeField]
     GameObject tankCannon, tankBody;
@@ -53,7 +53,8 @@ public class TankMovement : MonoBehaviour {
 
     void FixedUpdate()
     {
-
+        tankCannon.transform.LookAt(transform.position + (-aimDir));
+        tankBody.transform.LookAt(transform.position + (moveVel));
         cC.SimpleMove(moveVel.normalized*speed);
     }
 
