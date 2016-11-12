@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Thinksquirrel.CShake;
 
 public class Shell : MonoBehaviour {
 
@@ -23,7 +24,13 @@ public class Shell : MonoBehaviour {
 		Instantiate (explosion, transform.position, Quaternion.identity);
 
 		Health health = other.gameObject.GetComponent<Health> ();
+
+		if (health == null)
+			return;
+		
 		health.Modify (-damage);
+
+		CameraShake.ShakeAll();
 
 		Destroy(this);
 	}
