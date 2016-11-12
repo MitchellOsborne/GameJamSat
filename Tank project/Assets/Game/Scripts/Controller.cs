@@ -8,12 +8,6 @@ public class Controller : MonoBehaviour {
 	[SerializeField]
 	private int playerId = 0;
 
-	[SerializeField]
-	private Vector2 movement, aiming;
-
-	[SerializeField]
-	private bool shoot, boost;
-
     TankController tC;
 
 	private Player player;
@@ -48,5 +42,19 @@ public class Controller : MonoBehaviour {
         tC.OnAxis("AimVertical", player.GetAxis("AimVertical"));
         tC.OnAction("Shoot", player.GetButtonDown("Shoot"));
         tC.OnAction("Boost", player.GetButtonDown("Boost"));
+	}
+
+	public static void Vibrate(float lAmount = 1, float rAmount = 1, float lDuration = 0.5f, float rDuration = 0.5f){
+		// Set vibration for a certain duration
+		Player players = ReInput.players;
+
+		foreach (Player p in players) {
+			foreach (Joystick j in p.controllers.Joysticks) {
+				if (!j.supportsVibration)
+					continue;
+				if (j.vibrationMotorCount > 0)
+					j.SetVibration (lAmount, rAmount, lDuration, rDuration);
+			}
+		}
 	}
 }
